@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const connectDB = require('./config/db');
+const error = require('./middlewares/error');
 
 // Load env vars
 dotenv.config({ path : './config/config.env'});
@@ -19,6 +20,10 @@ app.use(express.json());
 
 // Routers
 app.use('/api/v1/bootcamps', bootcamps);
+
+// Middlewares
+app.use(error);
+
 
 const PORT = process.env.PORT || 5000;
 
